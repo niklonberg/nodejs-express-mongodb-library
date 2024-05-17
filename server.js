@@ -3,7 +3,7 @@ const serverless = require("serverless-http");
 const app = express();
 const expressLayouts = require("express-ejs-layouts");
 
-const indexRouter = require("../../routes/index");
+const indexRouter = require("./routes/index");
 
 app.set("view engine", "ejs"); // set view engine to use ejs
 app.set("views", __dirname + "/views"); // set where our views will come from
