@@ -1,5 +1,4 @@
 const express = require("express");
-const serverless = require("serverless-http");
 const app = express();
 const expressLayouts = require("express-ejs-layouts");
 
@@ -20,5 +19,3 @@ db.once("open", () => console.log("Connected to mongoose")); // log success
 app.use("/", indexRouter);
 
 app.listen(process.env.PORT || 3000, () => console.log(`Server running...`));
-
-module.exports.handler = serverless(app);
