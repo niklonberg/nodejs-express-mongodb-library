@@ -1,6 +1,7 @@
 [functions]
   external_node_modules = ["express", "mongoose", "express-ejs-layouts"]
   node_bundler = "esbuild"
+  included_files = [views/*]
 
 [build]
   command = "npm run build"
