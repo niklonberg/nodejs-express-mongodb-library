@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "devStart": "node --watch server.js"
+    "devStart": "node --env-file .env --watch server.js"
   },
   "keywords": [
     "nodejs",
