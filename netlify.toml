@@ -1,10 +1,12 @@
 [functions]
-  external_node_modules = ["express"]
+  external_node_modules = ["express", "mongoose", "express-ejs-layouts"]
   node_bundler = "esbuild"
+
 [build]
-  echo =Building Functions
+  command = "npm run build"
+
 [[redirects]]
   force = true
   from = "/*"
   status = 200
-  to = "/.netlify/functions/:splat"
+  to = "/.netlify/functions/server"
