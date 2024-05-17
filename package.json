@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "devStart": "node --env-file .env --watch server.js",
+    "devStart": "node --env-file .env --watch ./netlify/functions/server.js",
     "build": "echo Building Functions"
   },
   "keywords": [
@@ -19,7 +19,6 @@
     "ejs": "^3.1.10",
     "express": "^4.19.2",
     "express-ejs-layouts": "^2.5.1",
-    "mongoose": "^8.3.5",
-    "serverless-http": "^3.2.0"
+    "mongoose": "^8.3.5"
   }
 }
