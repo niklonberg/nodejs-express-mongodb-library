@@ -1,8 +1,9 @@
 const express = require("express");
+const serverless = require("serverless-http");
 const app = express();
 const expressLayouts = require("express-ejs-layouts");
 
-const indexRouter = require("./routes/index");
+const indexRouter = require("../../routes/index");
 
 app.set("view engine", "ejs"); // set view engine to use ejs
 app.set("views", __dirname + "/views"); // set where our views will come from
@@ -19,3 +20,5 @@ db.once("open", () => console.log("Connected to mongoose")); // log success
 app.use("/", indexRouter);
 
 app.listen(process.env.PORT || 3000, () => console.log(`Server running...`));
+
+module.exports.handler = serverless(app);
