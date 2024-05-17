@@ -10,6 +10,12 @@ app.set("layout", "layouts/layout"); // every single view will be 'put inside' t
 app.use(expressLayouts); // ensure express uses express layouts
 app.use(express.static("public")); // set express to use public files located in public folder
 
+const mongoose = require("mongoose");
+mongoose.connect(process.env.DATABASE_URL); // connect to our database using environment variable
+const db = mongoose.connection; // initiate connection
+db.on("error", (error) => console.error(error)); // if error, log it
+db.once("open", () => console.log("Connected to mongoose")); // log success
+
 app.use("/", indexRouter);
 
 app.listen(process.env.PORT || 3000, () => console.log(`Server running...`));
