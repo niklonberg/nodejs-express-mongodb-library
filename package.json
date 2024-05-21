@@ -1,7 +1,7 @@
 {
   "name": "nodejs-express-mongodb-library",
   "version": "1.0.0",
-  "description": "library app using express, mongodb",
+  "description": "MVC library app using express, mongodb, ejs",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
@@ -11,7 +11,9 @@
   "keywords": [
     "nodejs",
     "express",
-    "mongodb"
+    "mongodb",
+    "mvc",
+    "ejs"
   ],
   "author": "Nikolai Lønberg",
   "license": "ISC",
