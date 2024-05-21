@@ -28,7 +28,6 @@ router.post("/", (req, res) => {
     } // if success redirect to newly created author
     res.redirect(`author/${newAuthor.id}`);
   });
-  res.send(author);
 });
 
 module.exports = router;
