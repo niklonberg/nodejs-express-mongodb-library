@@ -4,11 +4,19 @@ const router = express.Router();
 
 // All authors route
 router.get("/", async (req, res) => {
+  let searchOptions = {};
+  // use req.query to access users search term
+  // ex: /authors?name=jo <-- user searched 'jo'
+  if (req.query.name !== null && req.query.name !== "") {
+    // use RegExp to do case-insensitive search based on name parameter.
+    // jo would match john, jolene etc..
+    searchOptions.name = new RegExp(req.query.name, "i");
+  }
   try {
     // get all authors
-    const authors = await Author.find({});
-    // render authors/index, passing authors to the template
-    res.render("authors/index", { authors });
+    const authors = await Author.find(searchOptions);
+    // render authors/index, sending back authors and query to the template
+    res.render("authors/index", { authors, searchOptions: req.query });
   } catch (error) {
     res.redirect("/");
   }
