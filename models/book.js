@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
 
+const coverImageBasePath = 'uploads/bookCovers'
+
 // Create book schema - equivalent to a table in sql db
 const bookSchema = new mongoose.Schema({
   title: {
@@ -36,3 +38,4 @@ const bookSchema = new mongoose.Schema({
 
 // export newly created model, with name Book and specified schema for it
 module.exports = mongoose.model("Book", bookSchema);
+module.exports.coverImageBasePath = coverImageBasePath
