@@ -1,28 +1,45 @@
-<label for="book-title">Title</label>
-<input
-  id="book-title"
-  type="text"
-  name="title"
-  value="<%= book.title %>"
-  required
-/>
-<label for="author-name">Author</label>
-<select id="author-name" name="author">
-  <!-- loop through authors and generate options for each -->
-  <% authors.forEach((author) => { %>
-    <% if (author.id === book.author) { %> <!-- if user has selected an author already, autoselect that author option -->
-      <option selected label="<%= author.name %>" value="<%= author.id %>">
-    <% } else { %>
-      <option label="<%= author.name %>" value="<%= author.id %>"></option>
-    <% } %>
-  <% }) %>
-</select>
-<label for="publish-date">Publishing date</label>
-<input
-  id="publish-date"
-  type="date"
-  name="publishDate"
-  value="<%= book.publishDate == null ? '' : 
-    book.publishDate.toISOString().split('T')[0] %>"
-  required
-/>
+<div>
+  <label for="book-title">Title</label>
+  <input
+    id="book-title"
+    type="text"
+    name="title"
+    value="<%= book.title %>"
+    required
+  />
+</div>
+<div>
+  <label for="author-name">Author</label>
+  <select id="author-name" name="author">
+    <!-- loop through authors and generate options for each -->
+    <% authors.forEach((author) => { %>
+      <% if (author.id === book.author) { %> <!-- if user has selected an author already, autoselect that author option -->
+        <option selected label="<%= author.name %>" value="<%= author.id %>">
+      <% } else { %>
+        <option label="<%= author.name %>" value="<%= author.id %>"></option>
+      <% } %>
+    <% }) %>
+  </select>
+</div>
+<div>
+  <label for="publish-date">Publishing date</label>
+  <input
+    id="publish-date"
+    type="date"
+    name="publishDate"
+    value="<%= book.publishDate == null ? '' : 
+      book.publishDate.toISOString().split('T')[0] %>"
+    required
+  />
+</div>
+<div>
+  <label for="page-count">Page count</label>
+  <input
+    id="page-count"
+    type="number"
+    name="pageCount"
+    min="1"
+    value="<%= book.pageCount %>"
+    required
+  />
+</div>
