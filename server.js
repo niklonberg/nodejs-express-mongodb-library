@@ -4,6 +4,7 @@ const app = express();
 const expressLayouts = require("express-ejs-layouts");
 
 const indexRouter = require("./routes/index");
+const authorRouter = require("./routes/authors");
 
 app.set("view engine", "ejs"); // set view engine to use ejs
 app.set("views", path.resolve(__dirname, "views")); // set where our views will come from
@@ -18,5 +19,6 @@ db.on("error", (error) => console.error(error)); // if error, log it
 db.once("open", () => console.log("Connected to mongoose")); // log success
 
 app.use("/", indexRouter);
+app.use("/authors", authorRouter)
 
 app.listen(process.env.PORT || 3000, () => console.log(`Server running...`));
