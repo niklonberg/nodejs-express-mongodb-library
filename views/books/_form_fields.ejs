@@ -17,3 +17,12 @@
     <% } %>
   <% }) %>
 </select>
+<label for="publish-date">Publishing date</label>
+<input
+  id="publish-date"
+  type="date"
+  name="publishDate"
+  value="<%= book.publishDate == null ? '' : 
+    book.publishDate.toISOString().split('T')[0] %>"
+  required
+/>
