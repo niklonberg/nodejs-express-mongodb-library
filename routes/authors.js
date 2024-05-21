@@ -34,7 +34,7 @@ router.post("/", async (req, res) => {
   } catch (error) {
     // if error occurs, render authors/new and auto populate the fields with what the user entered
     res.render("authors/new", {
-      author: author,
+      author,
       errorMsg: "Error creating author",
     });
   }
