@@ -11,6 +11,7 @@ app.set("views", path.resolve(__dirname, "views")); // set where our views will 
 app.set("layout", "layouts/layout"); // every single view will be 'put inside' this layout file, so things like our header / footer dont need to be duplicated for each view
 app.use(expressLayouts); // ensure express uses express layouts
 app.use(express.static("public")); // set express to use public files located in public folder
+app.use(express.urlencoded({ limit: "10mb", extended: true }));
 
 const mongoose = require("mongoose");
 mongoose.connect(process.env.DATABASE_URL); // connect to our database using environment variable
@@ -19,6 +20,6 @@ db.on("error", (error) => console.error(error)); // if error, log it
 db.once("open", () => console.log("Connected to mongoose")); // log success
 
 app.use("/", indexRouter);
-app.use("/authors", authorRouter)
+app.use("/authors", authorRouter);
 
 app.listen(process.env.PORT || 3000, () => console.log(`Server running...`));
