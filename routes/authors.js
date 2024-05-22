@@ -53,24 +53,23 @@ router.get("/:id", (req, res) => {
 
 router.get("/:id/edit", async (req, res) => {
   try {
-    const author = await Author.findById(req.params.id)
-    res.render("authors/edit", { author });  
+    const author = await Author.findById(req.params.id);
+    res.render("authors/edit", { author });
   } catch (error) {
-    res.redirect('/authors')
+    res.redirect("/authors");
   }
-  
 });
 
 router.put("/:id", async (req, res) => {
-  let author
+  let author;
   try {
     author = await Author.findById(req.params.id);
-    author.name = req.body.name
-    await author.save()
+    author.name = req.body.name;
+    await author.save();
     res.redirect(`/authors/${author.id}`);
   } catch (error) {
     if (author == null) {
-      res.redirect('/')
+      res.redirect("/");
     } else {
       res.render("authors/edit", {
         author,
@@ -80,8 +79,19 @@ router.put("/:id", async (req, res) => {
   }
 });
 
-router.delete("/:id", (req, res) => {
-  res.send(`Delete author, id: ${req.params.id}`);
+router.delete("/:id", async (req, res) => {
+  let author;
+  try {
+    author = await Author.findById(req.params.id);
+    await Author.findByIdAndDelete(req.params.id);
+    res.redirect(`/authors`);
+  } catch (error) {
+    if (author == null) {
+      res.redirect("/");
+    } else {
+      res.redirect(`/authors/${author.id}/edit`);
+    }
+  }
 });
 
 module.exports = router;
