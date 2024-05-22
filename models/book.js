@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const path = require('path')
 
 const coverImageBasePath = 'uploads/bookCovers'
 
@@ -34,7 +35,15 @@ const bookSchema = new mongoose.Schema({
     required: true,
     ref: "Author",
   },
-});
+})
+
+// create virtual coverImagePath property on book model
+// which we can use to set book img src dynamically
+bookSchema.virtual('coverImagePath').get(function() {
+  if (this.coverImageName != null) {
+    return path.join('/', coverImageBasePath, this.coverImageName)
+  }
+})
 
 // export newly created model, with name Book and specified schema for it
 module.exports = mongoose.model("Book", bookSchema);
