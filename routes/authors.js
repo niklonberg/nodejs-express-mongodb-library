@@ -62,8 +62,22 @@ router.get("/:id/edit", async (req, res) => {
   
 });
 
-router.put("/:id", (req, res) => {
-  res.send(`Update author, id: ${req.params.id}`);
+router.put("/:id", async (req, res) => {
+  // save author inputs
+  const author = new Author({
+    name: req.body.name,
+  });
+  try {
+    author = await author.findById(req.params.id);
+    await author.save()
+    res.redirect(`authors/${author.id}`);
+  } catch (error) {
+    // if error occurs, redirect to page and auto populate the fields
+    res.render("authors/:id/edit", {
+      author,
+      errorMsg: "Error updating author",
+    });
+  }
 });
 
 router.delete("/:id", (req, res) => {
