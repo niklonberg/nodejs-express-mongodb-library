@@ -25,9 +25,13 @@ const bookSchema = new mongoose.Schema({
     required: true,
     default: Date.now,
   },
-  coverImageName: {
-    type: String,
+  coverImage: {
+    type: Buffer,
     required: true,
+  },
+  coverImageType: {
+    type: String,
+    required: true
   },
   // create author relationship, referencing Author model
   author: {
