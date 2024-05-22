@@ -2,22 +2,21 @@ const express = require("express");
 const Book = require("../models/book");
 const Author = require("../models/author");
 const path = require("path");
-const multer = require("multer");
 const fs = require("fs");
 const router = express.Router();
 
 // create book cover upload path <-- see book model
 const uploadPath = path.join("public", Book.coverImageBasePath);
 // create imageMimeTypes, which is an array of types of image files we'll accept
-const imageMimeTypes = ["image/jpeg", "image/png", "image/gif"];
+// const imageMimeTypes = ["image/jpeg", "image/png", "image/gif"];
 // use multer library
-const coverImageFileUpload = multer({
-  dest: uploadPath, // destination path
-  fileFilter: (req, file, callback) => {
-    // a filter method
-    callback(null, imageMimeTypes.includes(file.mimetype));
-  },
-});
+// const coverImageFileUpload = multer({
+//   dest: uploadPath, // destination path
+//   fileFilter: (req, file, callback) => {
+//     // a filter method
+//     callback(null, imageMimeTypes.includes(file.mimetype));
+//   },
+// });
 
 // All books route
 router.get("/", async (req, res) => {
@@ -51,7 +50,7 @@ router.get("/new", async (req, res) => {
 });
 
 // Create book route
-router.post("/", coverImageFileUpload.single("cover"), async (req, res) => {
+router.post("/", async (req, res) => {
   const filename = req.file != null ? req.file.filename : null;
   console.log("req.file: ", req.file);
   console.log("filename: ", filename);
