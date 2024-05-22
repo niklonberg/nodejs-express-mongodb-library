@@ -2,6 +2,7 @@ const express = require("express");
 const path = require("path");
 const app = express();
 const expressLayouts = require("express-ejs-layouts");
+const methodOverride = require('method-override')
 
 const indexRouter = require("./routes/index");
 const authorRouter = require("./routes/authors");
@@ -13,6 +14,7 @@ app.set("layout", "layouts/layout"); // every single view will be 'put inside' t
 app.use(expressLayouts); // ensure express uses express layouts
 app.use(express.static("public")); // set express to use public files located in public folder
 app.use(express.urlencoded({ limit: "10mb", extended: true }));
+app.use(methodOverride('_method'))
 
 const mongoose = require("mongoose");
 mongoose.connect(process.env.DATABASE_URL); // connect to our database using environment variable
