@@ -1,0 +1,5 @@
+  <!-- HTML forms dont support delete method by default, here we use method-override to allow that -->
+  <!-- example url: /authors/someIdViaEjs?_method=DELETE -->
+  <form method="POST" action="<%= dynamicURL %>?_method=DELETE">
+    <button type="submit">Delete</button>
+  </form>
