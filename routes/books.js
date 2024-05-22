@@ -21,7 +21,28 @@ const coverImageFileUpload = multer({
 
 // All books route
 router.get("/", async (req, res) => {
-  res.render("books/index");
+  let query = Book.find()
+  if (req.query.title != null && req.query.title !== '') 
+    // case-insensitive search for title
+    query = query.regex('title', new RegExp(req.query.title, 'i'))
+  
+  if (req.query.publishedBefore != null && req.query.publishedBefore !== '')
+    // check that publishedBefore date is less than the books publishDate
+    query = query.lte('publishDate', req.query.publishedBefore)
+  
+  if (req.query.publishedAfter != null && req.query.publishedAfter !== '') 
+    // check for greater than
+    query = query.gte('publishDate', req.query.publishedAfter)
+  
+  try {
+    const books = await query.exec()
+    res.render("books/index", {
+      books,
+      searchOptions: req.query
+    });
+  } catch (error) {
+    res.redirect('/')
+  }
 });
 
 // New book route
