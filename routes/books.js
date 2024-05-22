@@ -51,13 +51,11 @@ router.get("/new", async (req, res) => {
 
 // Create book route
 router.post("/", async (req, res) => {
-  const filename = req.file != null ? req.file.filename : null;
   const book = new Book({
     title: req.body.title,
     author: req.body.author,
     publishDate: new Date(req.body.publishDate),
     pageCount: req.body.pageCount,
-    coverImageName: filename,
     description: req.body.description,
   });
   saveCover(book, req.body.cover)
@@ -67,16 +65,9 @@ router.post("/", async (req, res) => {
     // res.redirect(`books/${newBook.id}`);
     res.redirect("books");
   } catch (error) {
-    // if an error occurs during creation of a book, a bookCover is still added
-    // the check below ensures it is removed
-    if (book.coverImageName != null) removeBookCover(book.coverImageName);
     renderNewPage(res, book, true);
   }
 });
-
-function removeBookCover(filename) {
-  fs.unlink(path.join(uploadPath, filename), (err) => console.error(err));
-}
 
 async function renderNewPage(res, book, hasError = false) {
   try {
