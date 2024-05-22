@@ -37,8 +37,7 @@ router.post("/", async (req, res) => {
     // save new author to database
     const newAuthor = await author.save();
     // if success redirect to newly created author
-    // res.redirect(`author/${newAuthor.id}`);
-    res.redirect("authors");
+    res.redirect(`author/${newAuthor.id}`);
   } catch (error) {
     // if error occurs, render authors/new and auto populate the fields with what the user entered
     res.render("authors/new", {
@@ -63,20 +62,21 @@ router.get("/:id/edit", async (req, res) => {
 });
 
 router.put("/:id", async (req, res) => {
-  // save author inputs
-  const author = new Author({
-    name: req.body.name,
-  });
+  let author
   try {
-    author = await author.findById(req.params.id);
+    author = await Author.findById(req.params.id);
+    author.name = req.body.name
     await author.save()
-    res.redirect(`authors/${author.id}`);
+    res.redirect(`/authors/${author.id}`);
   } catch (error) {
-    // if error occurs, redirect to page and auto populate the fields
-    res.render("authors/:id/edit", {
-      author,
-      errorMsg: "Error updating author",
-    });
+    if (author == null) {
+      res.redirect('/')
+    } else {
+      res.render("authors/edit", {
+        author,
+        errorMsg: "Error updating author",
+      });
+    }
   }
 });
 
