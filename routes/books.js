@@ -8,7 +8,7 @@ const router = express.Router();
 // create book cover upload path <-- see book model
 const uploadPath = path.join("public", Book.coverImageBasePath);
 // create imageMimeTypes, which is an array of types of image files we'll accept
-// const imageMimeTypes = ["image/jpeg", "image/png", "image/gif"];
+const imageMimeTypes = ["image/jpeg", "image/png", "image/gif"];
 // use multer library
 // const coverImageFileUpload = multer({
 //   dest: uploadPath, // destination path
@@ -52,8 +52,6 @@ router.get("/new", async (req, res) => {
 // Create book route
 router.post("/", async (req, res) => {
   const filename = req.file != null ? req.file.filename : null;
-  console.log("req.file: ", req.file);
-  console.log("filename: ", filename);
   const book = new Book({
     title: req.body.title,
     author: req.body.author,
@@ -62,6 +60,7 @@ router.post("/", async (req, res) => {
     coverImageName: filename,
     description: req.body.description,
   });
+  saveCover(book, req.body.cover)
 
   try {
     const newBook = await book.save();
@@ -90,6 +89,15 @@ async function renderNewPage(res, book, hasError = false) {
     res.render("books/new", params);
   } catch (error) {
     res.redirect("/books");
+  }
+}
+
+function saveCover(book, coverEncoded) {
+  if (coverEncoded == null) return
+  const cover = JSON.parse(coverEncoded)
+  if (cover != null && imageMimeTypes.includes(cover.type)) {
+    book.coverImage = new Buffer.from(cover.data, 'base64')
+    book.coverImageType = cover.type
   }
 }
 
