@@ -49,19 +49,25 @@ router.post("/", async (req, res) => {
 });
 
 router.get("/:id", (req, res) => {
-  res.send("Show author, id: ", req.params.id);
+  res.send(`Show author, id: ${req.params.id}`);
 });
 
-router.get("/:id/edit", (req, res) => {
-  res.send("Edit author, id: ", req.params.id);
+router.get("/:id/edit", async (req, res) => {
+  try {
+    const author = await Author.findById(req.params.id)
+    res.render("authors/edit", { author });  
+  } catch (error) {
+    res.redirect('/authors')
+  }
+  
 });
 
 router.put("/:id", (req, res) => {
-  res.send("Update author, id: ", req.params.id);
+  res.send(`Update author, id: ${req.params.id}`);
 });
 
 router.delete("/:id", (req, res) => {
-  res.send("Delete author, id: ", req.params.id);
+  res.send(`Delete author, id: ${req.params.id}`);
 });
 
 module.exports = router;
