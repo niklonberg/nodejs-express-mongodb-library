@@ -9,19 +9,20 @@ const authorSchema = new mongoose.Schema({
   },
 });
 
-// add function to run before a database 'remove' (delete) attempt
-authorSchema.pre("findOneAndDelete", function (next) {
-  Book.find({ author: this.id }, (err, books) => {
-    if (err) {
-      next(err);
-    } else if (books.length > 0) {
-      // prevent author deletion if there are books with that author tied to it
-      next(new Error("This author has books tied to them"));
+// add function to run before a database 'deleteOne' attempt
+authorSchema.pre("deleteOne", async function (next) {
+  try {
+    const query = this.getFilter();
+    const hasBook = await Book.exists({ author: query._id });
+
+    if (hasBook) {
+      next(new Error("This author still has books."));
     } else {
-      // proceed with deletion
       next();
     }
-  });
+  } catch (err) {
+    next(err);
+  }
 });
 
 // export newly created model, with name Author and specified schema for it

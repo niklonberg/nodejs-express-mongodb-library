@@ -37,7 +37,7 @@ router.post("/", async (req, res) => {
     // save new author to database
     const newAuthor = await author.save();
     // if success redirect to newly created author
-    res.redirect(`author/${newAuthor.id}`);
+    res.redirect(`authors/${newAuthor.id}`);
   } catch (error) {
     // if error occurs, render authors/new and auto populate the fields with what the user entered
     res.render("authors/new", {
@@ -83,9 +83,12 @@ router.delete("/:id", async (req, res) => {
   let author;
   try {
     author = await Author.findById(req.params.id);
-    await Author.findByIdAndDelete(req.params.id);
-    res.redirect(`/authors`);
+    const response = await Author.deleteOne({ _id: req.params.id });
+    if (response.deletedCount === 1) {
+      res.redirect(`/authors`);
+    }
   } catch (error) {
+    console.log(error);
     if (author == null) {
       res.redirect("/");
     } else {
