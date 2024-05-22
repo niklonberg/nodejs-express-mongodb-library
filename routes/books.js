@@ -3,6 +3,7 @@ const Book = require("../models/book");
 const Author = require("../models/author");
 const path = require("path");
 const multer = require("multer");
+const fs = require("fs");
 const router = express.Router();
 
 // create book cover upload path <-- see book model
@@ -47,9 +48,16 @@ router.post("/", coverImageFileUpload.single("cover"), async (req, res) => {
     // res.redirect(`books/${newBook.id}`);
     res.redirect("books");
   } catch (error) {
+    // if an error occurs during creation of a book, a bookCover is still added
+    // the check below ensures it is removed
+    if (book.coverImageName != null) removeBookCover(book.coverImageName);
     renderNewPage(res, book, true);
   }
 });
+
+function removeBookCover(filename) {
+  fs.unlink(path.join(uploadPath, filename), (err) => console.error(err));
+}
 
 async function renderNewPage(res, book, hasError = false) {
   try {
