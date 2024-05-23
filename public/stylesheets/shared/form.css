@@ -11,13 +11,6 @@
   gap: 1rem;
 }
 
-.author-row {
-  margin-top: 1rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
 .form-row-end {
   justify-content: flex-end;
 }
