@@ -13,7 +13,7 @@
   <select id="author-name" name="author">
     <!-- loop through authors and generate options for each -->
     <% authors.forEach((author) => { %>
-      <% if (author.id === book.author) { %> <!-- if user has selected an author already, autoselect that author option -->
+      <% if (author.id === book.author.toString()) { %> <!-- if user has selected an author already, autoselect that author option -->
         <option selected label="<%= author.name %>" value="<%= author.id %>">
       <% } else { %>
         <option label="<%= author.name %>" value="<%= author.id %>"></option>

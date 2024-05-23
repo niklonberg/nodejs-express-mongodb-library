@@ -115,7 +115,7 @@ async function renderFormPage(res, book, form, hasError = false) {
     const params = {
       authors,
       book,
-    }
+    };
     if (hasError) {
       if (form === "edit") params.errorMsg = "Error updating book";
       else params.errorMsg = "Error creating book";
