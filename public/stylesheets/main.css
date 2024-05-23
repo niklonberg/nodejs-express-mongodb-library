@@ -10,3 +10,15 @@
 body {
   background: linear-gradient(0deg, var(--clr-bg-dark), var(--clr-bg-light));
 }
+
+.container {
+  border: 2px solid yellow;
+  padding-inline: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  margin-bottom: 3rem;
+}
+
+.inner-container {
+  margin: 0 2rem;
+}
