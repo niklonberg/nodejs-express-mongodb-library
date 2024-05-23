@@ -1,6 +1,12 @@
-@import 'shared/fonts.css';
+@import "shared/fonts.css";
+@import "shared/variables.css";
 
 :root {
-  font-family: 'Gotham Rounded Book';
-  font-size: 20px
+  font-family: "Gotham Rounded Book";
+  font-size: 20px;
+  color: var(--clr-text);
+}
+
+body {
+  background: linear-gradient(0deg, var(--clr-bg-dark), var(--clr-bg-light));
 }
