@@ -1,20 +1,27 @@
 <h2 class="page-header">Search authors</h2>
 <form action="/authors" , method="GET">
-  <label for="author-name">Name</label>
-  <input
-    id="author-name"
-    type="text"
-    name="name"
-    value="<%= searchOptions.name %>"
-  />
-  <button type="submit">Search</button>
+  <div class="form-row">
+    <div class="form-item">
+      <label for="author-name">Name</label>
+      <input
+        id="author-name"
+        type="text"
+        name="name"
+        value="<%= searchOptions.name %>"
+      />
+    </div>
+  </div>
+  <div class="form-row form-row-end">
+    <button class="btn btn-primary" type="submit">Search</button>
+  </div>
 </form>
-<br />
-<% authors.forEach((author) => { %>
-  <div><%= author.name %></div>
-  <div class="btn-row">
-    <a class="btn btn-primary" href="/authors/<%= author.id %>">View</a>
-    <a class="btn btn-primary" href="/authors/<%= author.id %>/edit">Edit</a>
-    <%- include('../partials/deleteForm', {dynamicURL: `/authors/${author.id}`}) %>
+<% authors.forEach(author => { %>
+  <div class="author-row">
+    <div><%= author.name %></div>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/authors/<%= author.id %>">View</a>
+      <a class="btn btn-primary" href="/authors/<%= author.id %>/edit">Edit</a>
+      <%- include('../partials/deleteForm', { dynamicURL: `/authors/${author.id}` }) %>
+    </div>
   </div>
 <% }) %>
