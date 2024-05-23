@@ -1,6 +1,7 @@
 :root {
-  --nav-title-font-size: 3rem;
+  --nav-title-font-size: 5rem;
   --nav-title-font-weight: 700;
+  --nav-link-font-weight: 300;
 }
 
 .header-title {
@@ -11,4 +12,29 @@
 }
 
 .header-nav {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 3rem;
+}
+
+.header-nav ul {
+  list-style-type: none;
+  display: flex;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+}
+
+.header-link a {
+  text-decoration: none;
+  color: var(--clr-text-light);
+  font-weight: var(--nav-link-font-weight);
+}
+
+.header-link a:hover,
+.header-title:hover {
+  color: white;
 }
