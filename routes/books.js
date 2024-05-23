@@ -91,7 +91,7 @@ router.put("/:id", async (req, res) => {
       saveCover(book, req.body.cover);
     }
     await book.save();
-    res.redirect(`books/${book.id}`);
+    res.redirect(`${book.id}`);
   } catch (error) {
     if (book != null) {
       renderEditPage(res, book, true);
@@ -122,6 +122,7 @@ async function renderFormPage(res, book, form, hasError = false) {
     }
     res.render(`books/${form}`, params);
   } catch (error) {
+    console.log(error);
     res.redirect("/books");
   }
 }
