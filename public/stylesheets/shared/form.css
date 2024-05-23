@@ -1,0 +1,57 @@
+:root {
+  --form-label-font-size: 1.2rem;
+  --form-input-border-clr: hsl(var(--clr-base-hue), 100%, 50%);
+  --form-input-border-clr-light: hsl(var(--clr-base-hue), 100%, 80%);
+  --form-input-bg-clr: hsl(var(--clr-base-hue), 100%, 30%);
+}
+
+.form-row {
+  display: flex;
+  margin-bottom: 0.5rem;
+  gap: 1rem;
+}
+
+.form-item {
+  display: flex;
+  gap: 0.5rem;
+  flex-direction: column;
+  /* justify-content: space-between; */
+  flex-grow: 1;
+  flex-basis: 0;
+}
+
+.form-item-no-grow {
+  flex-grow: 0;
+}
+
+.form-item > label {
+  font-size: var(--form-label-font-size);
+  margin-left: 0.25rem
+}
+
+.form-item input, .form-item select, .form-item textarea {
+  height: 2rem;
+  padding: 0.25rem 0.5rem;
+  font-size: 1rem;
+  font-weight: normal;
+  font-family: 'Gotham Rounded', sans-serif;
+  border: 1px solid var(--form-input-border-clr);
+  border-radius: 0.25rem;
+  background-color: var(--form-input-bg-clr);
+  color: var(--clr-text-light);
+  outline: none;
+}
+
+.form-item textarea {
+  min-height: 150px;
+  height: 100%;
+  resize: vertical;
+}
+
+.form-item select option {
+  background-color: black;
+}
+
+.form-item input:focus, .form-item select:focus, .form-item textarea:focus {
+  border-color: var(--form-input-border-clr-light);
+}
