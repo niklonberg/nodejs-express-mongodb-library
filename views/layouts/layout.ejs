@@ -29,7 +29,12 @@
     <title>Mybrary</title>
   </head>
   <body>
-    <%- include('../partials/header.ejs')%> <%-
-    include('../partials/errorMsg.ejs')%> <%- body %>
+    <div class="container">
+      <%- include('../partials/header.ejs')%>
+      <div class="inner-container">
+        <%- include('../partials/errorMsg.ejs')%> 
+        <%- body %>
+      </div>
+    </div>
   </body>
 </html>
