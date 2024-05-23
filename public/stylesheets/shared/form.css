@@ -55,3 +55,19 @@
 .form-item input:focus, .form-item select:focus, .form-item textarea:focus {
   border-color: var(--form-input-border-clr-light);
 }
+
+.filepond--root {
+  font-family: "Gohtam Rounded", sans-serif;
+  margin-bottom: 0;
+}
+
+.filepond--panel-root {
+  background-color: var(--form-input-bg-clr);
+  border: 1px solid var(--form-input-border-clr);
+  border-radius: 0.25rem;
+}
+
+.filepond--drop-label {
+  color: var(--clr-text-light);
+  font-size: inherit;
+}
