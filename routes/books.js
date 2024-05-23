@@ -1,7 +1,6 @@
 const express = require("express");
 const Book = require("../models/book");
 const Author = require("../models/author");
-const Book = require("../models/book");
 const router = express.Router();
 // create imageMimeTypes, which is an array of types of image files we'll accept
 const imageMimeTypes = ["image/jpeg", "image/png", "image/gif"];
