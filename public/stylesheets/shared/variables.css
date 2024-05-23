@@ -1,0 +1,6 @@
+:root {
+  --clr-base-hue: 200;
+  --clr-bg-dark: hsl(var(--clr-base-hue), 100%, 12%);
+  --clr-bg-light: hsl(var(--clr-base-hue), 100%, 16%);
+  --clr-text: hsl(var(--clr-base-hue), 100%, 90%);
+}
