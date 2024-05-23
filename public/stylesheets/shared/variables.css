@@ -1,5 +1,7 @@
 :root {
   --clr-base-hue: 200;
+  --clr-danger-hue-offset: 180;
+  --clr-danger-hue: calc(var(--clr-base-hue) - var(--clr-danger-hue-offset));
   --clr-bg-dark: hsl(var(--clr-base-hue), 100%, 12%);
   --clr-bg-light: hsl(var(--clr-base-hue), 100%, 16%);
   --clr-text-light: hsl(var(--clr-base-hue), 100%, 90%);
