@@ -48,7 +48,7 @@ router.post("/", async (req, res) => {
   saveCover(book, req.body.cover);
 
   try {
-    const newBook = await Book.save();
+    const newBook = await book.save();
     res.redirect(`books/${newBook.id}`);
   } catch (error) {
     renderNewPage(res, book, true);
@@ -95,6 +95,28 @@ router.put("/:id", async (req, res) => {
   } catch (error) {
     if (book != null) {
       renderEditPage(res, book, true);
+    } else {
+      res.redirect("/");
+    }
+  }
+});
+
+// Delete book route
+router.delete("/:id", async (req, res) => {
+  let book;
+  try {
+    book = await Book.findById(req.params.id);
+    const response = await Book.deleteOne({ _id: req.params.id });
+    if (response.deletedCount === 1) {
+      res.redirect("/books");
+    }
+  } catch (error) {
+    console.log(error);
+    if (book != null) {
+      res.render("books/show", {
+        book,
+        errorMsg: "Could not delete book",
+      });
     } else {
       res.redirect("/");
     }
