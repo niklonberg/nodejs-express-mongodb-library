@@ -21,6 +21,12 @@
   text-align: center;
 }
 
+.btn-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
 .btn-primary {
   background-color: var(--clr-btn-primary-bg);
   color: var(--clr-btn-primary-text);
