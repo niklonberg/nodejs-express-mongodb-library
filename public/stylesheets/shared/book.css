@@ -1,0 +1,25 @@
+:root {
+  --book-cover-width: 200px;
+  --book-cover-width-lg: 325px;
+  --book-cover-aspect-ratio: 0.75;
+}
+
+.book-cover {
+  width: var(--book-cover-width);
+  height: calc(var(--book-cover-width) / var(--book-cover-aspect-ratio));
+}
+
+.book-cover-lg {
+  width: var(--book-cover-width-lg);
+} 
+
+.book-grid {
+  display: grid;
+  justify-content: center;
+  grid-gap: 2rem;
+  grid-template-columns: repeat(auto-fill, var(--book-cover-width));
+}
+
+.book-grid-lg {
+  grid-template-columns: repeat(auto-fill, var(--book-cover-width-lg));
+}
