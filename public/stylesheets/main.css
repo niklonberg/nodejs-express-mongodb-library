@@ -7,6 +7,10 @@
   color: var(--clr-text);
 }
 
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
 body {
   background: linear-gradient(0deg, var(--clr-bg-dark), var(--clr-bg-light));
 }
