@@ -1,9 +1,13 @@
 :root {
   --clr-btn-primary-bg: hsl(var(--clr-base-hue), 100%, 85%);
+  --clr-btn-primary-bg-dark: hsl(var(--clr-base-hue), 100%, 65%);
   --clr-btn-primary-text: hsl(var(--clr-base-hue), 100%, 22%);
+  --clr-btn-primary-text-dark: hsl(var(--clr-base-hue), 100%, 12%);
   --clr-btn-border: black;
   --clr-btn-danger-bg: hsl(var(--clr-danger-hue), 100%, 80%);
+  --clr-btn-danger-bg-dark: hsl(var(--clr-danger-hue), 100%, 60%);
   --clr-btn-danger-text: black;
+  --clr-btn-danger-text-dark: black;
 }
 
 .btn {
@@ -22,7 +26,17 @@
   color: var(--clr-btn-primary-text);
 }
 
+.btn-primary:hover {
+  background-color: var(--clr-btn-primary-bg-dark);
+  color: var(--clr-btn-primary-text-dark);
+}
+
 .btn-danger {
   background-color: var(--clr-btn-danger-bg);
   color: var(--clr-btn-danger-text);
+}
+
+.btn-danger:hover {
+  background-color: var(--clr-btn-danger-bg-dark);
+  color: var(--clr-btn-danger-text-dark);
 }
