@@ -1,13 +1,16 @@
 @import "shared/fonts.css";
 @import "shared/variables.css";
+@import "shared/header.css";
 
 :root {
   font-family: "Gotham Rounded Book";
   font-size: 20px;
-  color: var(--clr-text);
+  color: var(--clr-text-light);
 }
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
