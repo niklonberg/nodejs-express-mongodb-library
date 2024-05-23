@@ -1,6 +1,7 @@
 const express = require("express");
 const Book = require("../models/book");
 const Author = require("../models/author");
+const Book = require("../models/book");
 const router = express.Router();
 // create imageMimeTypes, which is an array of types of image files we'll accept
 const imageMimeTypes = ["image/jpeg", "image/png", "image/gif"];
@@ -48,7 +49,7 @@ router.post("/", async (req, res) => {
   saveCover(book, req.body.cover);
 
   try {
-    const newBook = await book.save();
+    const newBook = await Book.save();
     res.redirect(`books/${newBook.id}`);
   } catch (error) {
     renderNewPage(res, book, true);
@@ -71,12 +72,35 @@ router.get("/:id", async (req, res) => {
 router.get("/:id/edit", async (req, res) => {
   try {
     const book = await Book.findById(req.params.id);
-    renderEditPage(res, new Book());
+    renderEditPage(res, book);
   } catch (error) {
     res.redirect("/");
   }
 });
 
+// Update book route
+router.put("/:id", async (req, res) => {
+  let book;
+  try {
+    book = await Book.findById(req.params.id);
+    book.title = req.body.title;
+    book.author = req.body.author;
+    book.publishDate = new Date(req.body.publishDate);
+    book.pageCount = req.body.pageCount;
+    book.description = req.body.description;
+    if (req.body.cover != null && req.body.cover !== "") {
+      saveCover(book, req.body.cover);
+    }
+    await book.save();
+    res.redirect(`books/${book.id}`);
+  } catch (error) {
+    if (book != null) {
+      renderEditPage(res, book, true);
+    } else {
+      res.redirect("/");
+    }
+  }
+});
 
 async function renderNewPage(res, book, hasError = false) {
   renderFormPage(res, book, "new", hasError);
@@ -92,15 +116,16 @@ async function renderFormPage(res, book, form, hasError = false) {
     const params = {
       authors,
       book,
-    };
-    if (hasError) params.errorMsg = "Error creating book";
+    }
+    if (hasError) {
+      if (form === "edit") params.errorMsg = "Error updating book";
+      else params.errorMsg = "Error creating book";
+    }
     res.render(`books/${form}`, params);
   } catch (error) {
     res.redirect("/books");
   }
 }
-
-
 
 function saveCover(book, coverEncoded) {
   if (coverEncoded == null) return;
