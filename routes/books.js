@@ -56,6 +56,18 @@ router.post("/", async (req, res) => {
   }
 });
 
+// Show book route
+router.get("/:id", async (req, res) => {
+  try {
+    // populate author field with author data
+    // without populate, author field in book would just be an id
+    const book = await Book.findById(req.params.id).populate("author").exec();
+    res.render("books/show", { book });
+  } catch (error) {
+    res.redirect("/");
+  }
+})
+
 async function renderNewPage(res, book, hasError = false) {
   try {
     const authors = await Author.find({});
