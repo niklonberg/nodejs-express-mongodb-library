@@ -49,8 +49,7 @@ router.post("/", async (req, res) => {
 
   try {
     const newBook = await book.save();
-    // res.redirect(`books/${newBook.id}`);
-    res.redirect("books");
+    res.redirect(`books/${newBook.id}`);
   } catch (error) {
     renderNewPage(res, book, true);
   }
@@ -76,8 +75,8 @@ router.get("/:id/edit", async (req, res) => {
   } catch (error) {
     res.redirect("/");
   }
-  
 });
+
 
 async function renderNewPage(res, book, hasError = false) {
   renderFormPage(res, book, "new", hasError);
