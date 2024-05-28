@@ -1,5 +1,8 @@
 # Mybrary  
-This is a library web application created with express & mongodb. Focus here was in practicing MVC pattern, setting up routes and learning to use a view-engine. It reminded me a lot of my Python exam project which was built with Flask framework.  
+A simple library application where it is possible to add authors & books.  
+
+## Tech stack
+This is a dynamic web application created with express & mongodb. Focus here was in practicing MVC pattern, setting up routes and learning to use a view-engine. It reminded me a lot of my Python exam project which was built with Flask framework.  
 I also got more practice in working with environment variables, and making use of Filepond library for uploading book images.
 
 ## Page  
@@ -12,3 +15,4 @@ CRUD functionality for authors & books.
 Form & server validation for CRUD operations.  
 Search functionality for books / authors.  
 Views/templates for CRUD routes. 
+
