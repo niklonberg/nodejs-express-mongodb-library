@@ -19,11 +19,13 @@
 }
 
 body {
+  height: 100vh;
+  padding: 0;
+  margin: 0;
   background: linear-gradient(0deg, var(--clr-bg-dark), var(--clr-bg-light));
 }
 
 .container {
-  border: 2px solid yellow;
   padding-inline: 20px;
   max-width: 1200px;
   margin: 0 auto;
